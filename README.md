@@ -25,11 +25,12 @@ In your project's Gruntfile, add a section named `angular_module_builder` to the
 ```js
 grunt.initConfig({
   angular_module_builder: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    myModule: {
+		name:'my-module',
+		src:'~/dev/modules/my-module',
+		dest:'~/dev/module/build/my-module.js',
+		skip:'_',
+		exclude:['my-module.child-module']
     },
   },
 });
@@ -37,53 +38,49 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### name
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+Module name in output.
 
-#### options.punctuation
+#### src
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+Directory where placed module sources.
 
-### Usage Examples
+#### dest
+Type: `String`
+Default value: `'.'`
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+Destination file name.
 
-```js
-grunt.initConfig({
-  angular_module_builder: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+#### skip
+Type: `String`
+Default value: `'_'`
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+Skip files if they start with this option value.
 
-```js
-grunt.initConfig({
-  angular_module_builder: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+## License
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+The MIT License
 
-## Release History
-_(Nothing yet)_
+Copyright (c) 2010-2015 Google, Inc. http://angularjs.org
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

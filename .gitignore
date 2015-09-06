@@ -1,3 +1,7 @@
 node_modules
 npm-debug.log
 tmp
+test
+.jshintrc
+karma.conf.js
+Gruntfile.js
