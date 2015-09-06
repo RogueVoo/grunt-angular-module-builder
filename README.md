@@ -30,13 +30,15 @@ grunt.initConfig({
 		src:'~/dev/modules/my-module',
 		dest:'~/dev/module/build/my-module.js',
 		skip:'_',
-		exclude:['my-module.child-module']
+		exclude:['my-module.child-module'],
+		noTrim: true,
+		cleanComents: true
     },
   },
 });
 ```
 
-### Options
+### Target options
 
 #### name
 Type: `String`
@@ -61,11 +63,23 @@ Default value: `'_'`
 
 Skip files if they start with this option value.
 
+#### noTrim
+Type: `Boolean`
+Default value: `false`
+
+Trim files data for clear whitespaces.
+
+#### cleanComents
+Type: `Boolean`
+Default value: `false`
+
+Clean files data coments.
+
 ## License
 
 The MIT License
 
-Copyright (c) 2010-2015 Google, Inc. http://angularjs.org
+Copyright (c) 2015 Andrey Saponenko
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
