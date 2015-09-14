@@ -11,7 +11,6 @@
 module.exports = function (grunt) {
 
 	var path = require('path'),
-		sep = path.sep,
 		fs = require('fs')
 
 	grunt.registerTask('angular_module_builder', 'Grunt task for building AngularJS modules from source', function (target) {
