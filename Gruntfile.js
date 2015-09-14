@@ -18,6 +18,9 @@ module.exports = function (grunt) {
 				'tasks/*.js',
 				'<%= nodeunit.tests %>'
 			],
+			build:[
+				'test/build/my-module.js'
+			],
 			options: {
 				jshintrc: '.jshintrc'
 			}
@@ -30,7 +33,7 @@ module.exports = function (grunt) {
 
 		// Configuration to be run (and then tested).
 		angular_module_builder: {
-			myModule: {
+			'my-module': {
 				name: 'my-module',
 				src: 'test/testapp',
 				skip: '_',
@@ -57,7 +60,7 @@ module.exports = function (grunt) {
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'angular_module_builder', 'nodeunit']);
+	grunt.registerTask('test', ['clean', 'angular_module_builder', 'jshint:build', 'nodeunit']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);

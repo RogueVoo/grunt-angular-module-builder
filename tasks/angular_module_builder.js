@@ -87,7 +87,7 @@ module.exports = function (grunt) {
 		return s.indexOf(t) === 0
 	}
 
-	function composeFiles(_path, method, conf ) {
+	function composeFiles(_path, method, conf) {
 
 		if (!grunt.file.isDir(_path))
 			return []
@@ -107,10 +107,10 @@ module.exports = function (grunt) {
 			var name = path.basename(file, ext),
 				content = grunt.file.read(path.join(_path, file))
 
-			if( !conf.noTrim )
+			if (!conf.noTrim)
 				content = content.trim()
 
-			if( conf.cleanComents )
+			if (conf.cleanComents)
 				content = cleanComents(content)
 
 			if (name.length && content.length)
@@ -135,12 +135,12 @@ module.exports = function (grunt) {
 		_dir.forEach(function (file) {
 
 			var mp = path.join(dir, file),
-				nm
+				nm, mn
 
 			if (!grunt.file.isDir(mp))
 				return
 
-			if (startWith(conf.skip, file))
+			if (conf.skip && startWith(conf.skip, file))
 				return
 
 			mn = name + nd + file
@@ -176,40 +176,40 @@ module.exports = function (grunt) {
 			],
 			tmp
 
-		if (grunt.file.exists(mp)){
+		if (grunt.file.exists(mp)) {
 			tmp = grunt.file.read(mp)
-			if( tmp && tmp.length > 0 )
+			if (tmp && tmp.length > 0)
 				code.push(tmp)
 		}
 
-		code.push("angular.module('" + name + "')")
+		code.push("\nangular.module('" + name + "')")
 
-		mod.forEach(function(o){
-			code = code.concat( composeFiles(path.join(dir, o), o, conf) )
+		mod.forEach(function (o) {
+			code = code.concat(composeFiles(path.join(dir, o), o, conf))
 		})
 
 		mp = path.join(dir, 'config.js')
-		if (grunt.file.exists(mp)){
+		if (grunt.file.exists(mp)) {
 			tmp = grunt.file.read(mp)
-			if( tmp && tmp.length > 0 )
+			if (tmp && tmp.length > 0)
 				code.push(".config(" + tmp + ")")
 		}
 
 		mp = path.join(dir, 'run.js')
-		if (grunt.file.exists(mp)){
+		if (grunt.file.exists(mp)) {
 			tmp = grunt.file.read(mp)
-			if( tmp && tmp.length > 0 )
+			if (tmp && tmp.length > 0)
 				code.push(".run(" + grunt.file.read(mp) + ")")
 		}
 
-		grunt.log.writeln('Compile module: ' + String(name).yellow + ' at ' + String(dir).green )
+		grunt.log.writeln('Compile module: ' + String(name).yellow + ' at ' + String(dir).green)
 
-		if (conf.nested === undefined || conf.nested){
+		if (conf.nested === undefined || conf.nested) {
 			tmp = buildNestedModules(path.join(dir, 'module'), name, conf)
-			if(tmp && tmp.length > 0)
+			if (tmp && tmp.length > 0)
 				code.push(tmp)
 		}
 
-		return code.join("\n") + ';'
+		return code.join("\n")
 	}
 }
