@@ -134,7 +134,7 @@ module.exports = function (grunt) {
 		_dir.forEach(function (file) {
 
 			var mp = path.join(dir, file),
-				nm, mn
+				mn
 
 			if (!grunt.file.isDir(mp))
 				return
@@ -181,7 +181,10 @@ module.exports = function (grunt) {
 				code.push(tmp)
 		}
 
-		code.push("\nangular.module('" + name + "')")
+		if(code.length === 0)
+			code.push("\nangular.module('" + name + "',[])")
+		else
+			code.push("\nangular.module('" + name + "')")
 
 		mod.forEach(function (o) {
 			code = code.concat(composeFiles(path.join(dir, o), o, conf))
