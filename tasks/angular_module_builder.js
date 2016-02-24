@@ -171,7 +171,8 @@ module.exports = function (grunt) {
 				'animation',
 				'filter',
 				'controller',
-				'directive'
+				'directive',
+				'component'
 			],
 			tmp
 
