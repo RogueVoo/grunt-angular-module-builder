@@ -1,7 +1,7 @@
 {
   "name": "grunt-angular-module-builder",
   "description": "Grunt task for building AngularJS modules from source",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/RogueVoo/grunt-angular-module-builder",
   "author": {
     "name": "Andrey Saponenko",
